@@ -26,5 +26,6 @@
   transform: translateX(-100%);
 }
 .Logo {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  text-align: center;
 }
