@@ -72,6 +72,10 @@ class PancakeBuild extends Component {
     this.setState({ purchasing: false });
   };
 
+  purchaseContinueHandler = () => {
+    alert("You Continue");
+  };
+
   render() {
     const disabledInfo = {
       ...this.state.ingredients,
@@ -85,7 +89,11 @@ class PancakeBuild extends Component {
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelHandler}
         >
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            purchaseCancelled={this.purchaseCancelHandler}
+            purchaseContinued={this.purchaseContinueHandler}
+          />
         </Modal>
         <Pancake ingredients={this.state.ingredients} />
         <BuildControls
