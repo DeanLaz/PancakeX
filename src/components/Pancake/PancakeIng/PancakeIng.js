@@ -1,30 +1,38 @@
-import React from "react";
-import classes from "./PanecakeIng.module.css";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-const pancakeIng = (props) => {
-  let ingredient = null;
+import classes from "./PancakeIng.module.css";
 
-  switch (props.type) {
-    case "pancake":
-      ingredient = <div className={classes.Pancake}></div>;
-      break;
-    case "strawberry":
-      ingredient = <div className={classes.Strawberry}></div>;
-      break;
-    case "bannana":
-      ingredient = <div className={classes.Bannana}></div>;
-      break;
-    case "nutella":
-      ingredient = <div className={classes.Nutella}></div>;
-      break;
-    case "syrup":
-      ingredient = <div className={classes.Syrup}></div>;
-      break;
-    default:
-      ingredient = null;
+class PancakeIng extends Component {
+  render() {
+    let ingredient = null;
+
+    switch (this.props.type) {
+      case "pancake":
+        ingredient = <div className={classes.Pancakes}></div>;
+        break;
+      case "strawberry":
+        ingredient = <div className={classes.Strawberry}></div>;
+        break;
+      case "banana":
+        ingredient = <div className={classes.Banana}></div>;
+        break;
+      case "nutella":
+        ingredient = <div className={classes.Nutella}></div>;
+        break;
+      case "syrup":
+        ingredient = <div className={classes.Syrup}></div>;
+        break;
+      default:
+        ingredient = null;
+    }
+
+    return ingredient;
   }
+}
 
-  return ingredient;
+PancakeIng.propTypes = {
+  type: PropTypes.string.isRequired,
 };
 
-export default pancakeIng;
+export default PancakeIng;

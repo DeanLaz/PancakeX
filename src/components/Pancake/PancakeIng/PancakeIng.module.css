@@ -1,17 +1,17 @@
-.Pancake {
-  height: 13%;
+.Pancakes {
+  height: 15%;
   width: 80%;
   background: linear-gradient(#f08e4a, #e27b36);
-  border-radius: 0 0 30px 30px;
-  box-shadow: inset -15px 0 #c15711;
-  margin: 2% auto;
+  border-radius: 30px 30px 30px 30px;
+  box-shadow: inset 20px #c15711;
+  margin: 0 auto;
 }
 
 .Seeds1 {
   width: 10%;
   height: 15%;
-  position: absolute;
-  background-color: white;
+  position: relative;
+  background-color: rgb(88, 58, 0);
   left: 30%;
   top: 50%;
   border-radius: 40%;
@@ -71,23 +71,27 @@
 }
 
 .Strawberry {
-  width: 80%;
+  width: 65%;
   height: 8%;
-  background: linear-gradient(#ff0000, #ff0000);
+  /* background: linear-gradient(#ff0000, #ff0000); */
+  background-image: url("strawberry.png");
+  background-size: 9%;
   margin: 2% auto;
   border-radius: 15px;
 }
 
-.Bannana {
-  width: 90%;
-  height: 4.5%;
+.Banana {
+  width: 65%;
+  height: 7.5%;
   margin: 2% auto;
-  background: linear-gradient(#f4e404, #e7d000);
+  /* background: linear-gradient(#f4e404, #e7d000); */
+  background-image: url("4.png");
+  background-size: 10%;
   border-radius: 20px;
 }
 
 .Syrup {
-  width: 85%;
+  width: 65%;
   height: 7%;
   margin: 2% auto;
   background: linear-gradient(#aa6600, #a16100);
@@ -95,8 +99,9 @@
 }
 
 .Nutella {
-  width: 80%;
+  width: 70%;
   height: 3%;
   background: linear-gradient(#522c00, #462500);
   margin: 2% auto;
+  border-radius: 20px;
 }
