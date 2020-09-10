@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Aux from "../../hoc/Aux";
 import Pancake from "../../components/Pancake/Pancake";
 import BuildControls from "../../components/BuildControls/BuildControls";
-
+import Modal from "../../components/UI/Modal/Modal";
+import OrderSummary from "../../components/OrderSummary/OrderSummary";
 const INGREDIENT_PRICES = {
   syrup: 1,
   strawberry: 2.5,
@@ -19,8 +20,19 @@ class PancakeBuild extends Component {
     },
     totalPrice: 4,
     purchasable: false,
+    purchasing: false,
   };
 
+  updatePurchaseState(ingredients) {
+    const sum = Object.keys(ingredients)
+      .map((igKey) => {
+        return ingredients[igKey];
+      })
+      .reduce((sum, el) => {
+        return sum + el;
+      }, 0);
+    this.setState({ purchasable: sum > 0 });
+  }
   addIngredientHandler = (type) => {
     const oldCount = this.state.ingredients[type];
     const updatedCount = oldCount + 1;
@@ -32,6 +44,7 @@ class PancakeBuild extends Component {
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
+    this.updatePurchaseState(updatedIngredients);
   };
 
   removeIngredientHandler = (type) => {
@@ -48,6 +61,15 @@ class PancakeBuild extends Component {
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice - priceDeduction;
     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
+    this.updatePurchaseState(updatedIngredients);
+  };
+
+  purchaseHander = () => {
+    this.setState({ purchasing: true });
+  };
+
+  purchaseCancelHandler = () => {
+    this.setState({ purchasing: false });
   };
 
   render() {
@@ -59,11 +81,19 @@ class PancakeBuild extends Component {
     }
     return (
       <Aux>
+        <Modal
+          show={this.state.purchasing}
+          modalClosed={this.purchaseCancelHandler}
+        >
+          <OrderSummary ingredients={this.state.ingredients} />
+        </Modal>
         <Pancake ingredients={this.state.ingredients} />
         <BuildControls
           ingredientAdded={this.addIngredientHandler}
           ingredientRemoved={this.removeIngredientHandler}
           disabled={disabledInfo}
+          purchasable={this.state.purchasable}
+          ordered={this.purchaseHander}
           price={this.state.totalPrice}
         />
       </Aux>

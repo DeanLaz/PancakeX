@@ -24,9 +24,9 @@
 
 .OrderButton:hover,
 .OrderButton:active {
-  background-color: #a0db41;
-  border: 1px solid #966909;
-  color: #966909;
+  background-color: #007c92;
+  border: 1px solid #00426e;
+  color: #ffffff;
 }
 
 .OrderButton:disabled {
