@@ -105,3 +105,11 @@
   margin: 2% auto;
   border-radius: 20px;
 }
+
+.Butter {
+  width: 70%;
+  height: 3%;
+  background: linear-gradient(#ffd000, #ffd900);
+  margin: 2% auto;
+  border-radius: 20px;
+}

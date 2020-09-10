@@ -9,6 +9,7 @@ const INGREDIENT_PRICES = {
   strawberry: 2.5,
   banana: 2.5,
   nutella: 3,
+  butter: 1.5,
 };
 class PancakeBuild extends Component {
   state = {
@@ -17,6 +18,7 @@ class PancakeBuild extends Component {
       strawberry: 0,
       banana: 0,
       nutella: 0,
+      butter: 0,
     },
     totalPrice: 4,
     purchasable: false,

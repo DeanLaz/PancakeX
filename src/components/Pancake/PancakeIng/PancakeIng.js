@@ -23,6 +23,9 @@ class PancakeIng extends Component {
       case "syrup":
         ingredient = <div className={classes.Syrup}></div>;
         break;
+      case "butter":
+        ingredient = <div className={classes.Butter}></div>;
+        break;
       default:
         ingredient = null;
     }
