@@ -23,6 +23,7 @@ PancakeX is a WebApp created in React. Allowing users to build Pancakes and add 
 
 ## Todo:
 
+Fix Order Tab Error
 Add Checkout Feature
 Center Pancake on screen
 CSS Styling to OrderSummary/Modal Component
