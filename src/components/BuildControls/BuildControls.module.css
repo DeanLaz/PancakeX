@@ -1,5 +1,4 @@
 .BuildControls {
-  grid-auto-rows: 200px;
   width: 100%;
   background-color: lightblue;
   display: flex;
@@ -7,7 +6,7 @@
   align-items: center;
   box-shadow: 0 2px 1px lightpink;
   margin: auto;
-  padding: 10px 0;
+  padding: 1px 0;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -20,8 +19,9 @@
   border: 1px solid #1068a3;
   color: #ffffff;
   font-family: inherit;
-  font-size: 1.2em;
-  margin-top: 20px;
+  font-size: 1em;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 15px 30px;
   box-shadow: 2px 2px 2px #00b9d1;
 }
