@@ -6,6 +6,7 @@ import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import WithErrorHandler from "../../hoc/WithErrorHandler/WithErrorHandler";
 const INGREDIENT_PRICES = {
   syrup: 1,
   strawberry: 2.5,
@@ -26,7 +27,19 @@ class PancakeBuild extends Component {
     purchasable: false,
     purchasing: false,
     loading: false,
+    error: false,
   };
+
+  //   componentDidMount() {
+  //     axios
+  //       .get("https://pancakex-9a813.firebaseio.com/ingredients.json")
+  //       .then((reponse) => {
+  //         this.setState({ ingredients: reponse.data });
+  //       })
+  //       .catch((error) => {
+  //         this.setState({ error: true });
+  //       });
+  //   }
 
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
@@ -112,17 +125,39 @@ class PancakeBuild extends Component {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
 
-    let orderSummary = (
-      <OrderSummary
-        price={this.state.totalPrice}
-        ingredients={this.state.ingredients}
-        purchaseCancelled={this.purchaseCancelHandler}
-        purchaseContinued={this.purchaseContinueHandler}
-      />
-    );
+    let orderSummary = null;
 
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
+    let pancake = this.state.error ? (
+      <p>Ingredients Can't be Loaded</p>
+    ) : (
+      <Spinner />
+    );
+    if (this.state.ingredients) {
+      pancake = (
+        <Aux>
+          <Pancake ingredients={this.state.ingredients} />
+          <BuildControls
+            ingredientAdded={this.addIngredientHandler}
+            ingredientRemoved={this.removeIngredientHandler}
+            disabled={disabledInfo}
+            purchasable={this.state.purchasable}
+            ordered={this.purchaseHander}
+            price={this.state.totalPrice}
+          />
+        </Aux>
+      );
+
+      orderSummary = (
+        <OrderSummary
+          price={this.state.totalPrice}
+          ingredients={this.state.ingredients}
+          purchaseCancelled={this.purchaseCancelHandler}
+          purchaseContinued={this.purchaseContinueHandler}
+        />
+      );
+      if (this.state.loading) {
+        orderSummary = <Spinner />;
+      }
     }
     return (
       <Aux>
@@ -132,18 +167,10 @@ class PancakeBuild extends Component {
         >
           {orderSummary}
         </Modal>
-        <Pancake ingredients={this.state.ingredients} />
-        <BuildControls
-          ingredientAdded={this.addIngredientHandler}
-          ingredientRemoved={this.removeIngredientHandler}
-          disabled={disabledInfo}
-          purchasable={this.state.purchasable}
-          ordered={this.purchaseHander}
-          price={this.state.totalPrice}
-        />
+        {pancake}
       </Aux>
     );
   }
 }
 
-export default PancakeBuild;
+export default WithErrorHandler(PancakeBuild, axios);

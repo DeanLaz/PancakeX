@@ -5,6 +5,11 @@
 ### Front-End
 
 - React JS
+- Axios
+
+### Back-End
+
+- Firebase
 
 ### Languages
 

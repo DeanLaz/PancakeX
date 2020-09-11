@@ -79,6 +79,7 @@
   background-size: 1.5rem;
   margin: 1px auto;
   border-radius: 15px;
+  z-index: 11;
 }
 .Banana {
   width: 65%;
@@ -88,6 +89,7 @@
   background-image: url("4.png");
   background-size: 1.7rem;
   border-radius: 20px;
+  z-index: 10;
 }
 
 .Syrup {
@@ -97,6 +99,7 @@
   background: linear-gradient(#aa6600, #a16100);
   border-radius: 50px 50px 5px 5px;
   box-shadow: inset -0.3rem -0.3rem rgb(139, 84, 0);
+  z-index: 1;
 }
 
 .Nutella {
@@ -106,6 +109,7 @@
   margin: 1px auto;
   border-radius: 50px 50px 5px 5px;
   box-shadow: inset -0.3rem -0.3rem rgb(139, 84, 0);
+  z-index: 15;
 }
 
 .Butter {
@@ -114,4 +118,5 @@
   background: linear-gradient(#ffd000, #ffd900);
   margin: 1px auto;
   border-radius: 50px 50px 5px 5px;
+  z-index: 20;
 }
