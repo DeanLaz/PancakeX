@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Pancake.module.css";
 import PancakeIng from "./PancakeIng/PancakeIng";
+// import { withRouter } from "react-router-dom";
 
 const pancake = (props) => {
   let transformedIngredients = Object.keys(props.ingredients)
