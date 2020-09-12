@@ -5,10 +5,8 @@
 ### Front-End
 
 - React JS
+- Redux
 - Axios
-
-### Back-End
-
 - Firebase
 
 ### Languages
@@ -23,6 +21,9 @@ PancakeX is a WebApp created in React. Allowing users to build Pancakes and add 
 
 ## Todo:
 
+Add Redux
+Change Classes to Hooks
+Add Redux w/ Hooks
 Fix Order Tab Error
 Add Checkout Feature
 Center Pancake on screen
