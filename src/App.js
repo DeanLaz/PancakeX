@@ -12,8 +12,8 @@ class App extends Component {
         <BrowserRouter>
           <Layout>
             <Route path="/" exact component={PancakeBuild} />
-            <Route path="/checkout" component={Checkout} />
             <Route path="/orders" component={Orders} />
+            <Route path="/checkout" component={Checkout} />
           </Layout>
         </BrowserRouter>
       </div>

@@ -30,16 +30,16 @@ class PancakeBuild extends Component {
     error: false,
   };
 
-  componentDidMount() {
-    axios
-      .get("https://pancakex-9a813.firebaseio.com/ingredients.json")
-      .then((reponse) => {
-        this.setState({ ingredients: reponse.data });
-      })
-      .catch((error) => {
-        this.setState({ error: true });
-      });
-  }
+  //   componentDidMount() {
+  //     axios
+  //       .get("https://pancakex-9a813.firebaseio.com/ingredients.json")
+  //       .then((reponse) => {
+  //         this.setState({ ingredients: reponse.data });
+  //       })
+  //       .catch((error) => {
+  //         this.setState({ error: true });
+  //       });
+  //   }
 
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
