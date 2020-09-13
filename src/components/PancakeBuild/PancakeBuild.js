@@ -1,32 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from "../../axios-orders";
 import Aux from "../../hoc/Aux";
 import Pancake from "../../components/Pancake/Pancake";
 import BuildControls from "../../components/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
-import axios from "../../axios-orders";
+
 import Spinner from "../../components/UI/Spinner/Spinner";
 import WithErrorHandler from "../../hoc/WithErrorHandler/WithErrorHandler";
-import * as actionTypes from "../../store/actions";
+import * as actions from "../../store/actions/index";
 
 class PancakeBuild extends Component {
   state = {
     purchasing: false,
-    loading: false,
-    error: false,
   };
 
-  //   componentDidMount() {
-  //     axios
-  //       .get("https://pancakex-9a813.firebaseio.com/ingredients.json")
-  //       .then((reponse) => {
-  //         this.setState({ ingredients: reponse.data });
-  //       })
-  //       .catch((error) => {
-  //         this.setState({ error: true });
-  //       });
-  //   }
+  componentDidMount() {
+    return this.props.onInitIngredients;
+  }
 
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
@@ -48,6 +40,7 @@ class PancakeBuild extends Component {
   };
 
   purchaseContinueHandler = () => {
+    this.props.onInitPurchased();
     this.props.history.push("/checkout");
   };
 
@@ -60,8 +53,7 @@ class PancakeBuild extends Component {
     }
 
     let orderSummary = null;
-
-    let pancake = this.state.error ? (
+    let pancake = this.props.error ? (
       <p>Ingredients Can't be Loaded</p>
     ) : (
       <Spinner />
@@ -89,9 +81,6 @@ class PancakeBuild extends Component {
           purchaseContinued={this.purchaseContinueHandler}
         />
       );
-      if (this.state.loading) {
-        orderSummary = <Spinner />;
-      }
     }
     return (
       <Aux>
@@ -108,19 +97,17 @@ class PancakeBuild extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
+    ings: state.pancakeBuild.ingredients,
+    price: state.pancakeBuild.totalPrice,
+    error: state.pancakeBuild.error,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIngAdded: (ingName) =>
-      dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName }),
-    onIngRemoved: (ingName) =>
-      dispatch({
-        type: actionTypes.REMOVE_INGREDIENT,
-        ingredientName: ingName,
-      }),
+    onIngAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
+    onIngRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
+    onInitIngredients: () => dispatch(actions.initIngredients()),
+    onInitPurchased: () => dispatch(actions.purchaseInit()),
   };
 };
 

@@ -6,7 +6,8 @@ import Button from "../../../components/UI/Button/Button";
 import classes from "./ContactData.module.css";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
-
+import withErrorHandler from "../../../hoc/WithErrorHandler/WithErrorHandler";
+import * as actions from "../../../store/actions/index.js";
 class ContactData extends Component {
   state = {
     orderForm: {
@@ -77,13 +78,11 @@ class ContactData extends Component {
         touched: false,
       },
     },
-    loading: false,
     formIsValid: false,
   };
 
   orderHandler = (event) => {
     event.preventDefault();
-    this.setState({ loading: true });
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[
@@ -95,15 +94,7 @@ class ContactData extends Component {
       price: this.props.price,
       orderData: formData,
     };
-    axios
-      .post("/order.json", order)
-      .then((response) => {
-        this.setState({ loading: false });
-        this.props.history.push("/");
-      })
-      .catch((error) => {
-        this.setState({ loading: false });
-      });
+    this.props.onOrderPancake(order);
   };
 
   checkValidity = (value, rules) => {
@@ -173,7 +164,7 @@ class ContactData extends Component {
         </Button>
       </form>
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
     return (
@@ -187,8 +178,18 @@ class ContactData extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ing: state.ingredients,
-    price: state.totalPrice,
+    ing: state.pancakeBuild.ingredients,
+    price: state.pancakeBuild.totalPrice,
+    loading: state.order.loading,
   };
 };
-export default connect(mapStateToProps)(ContactData);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onOrderPancake: (orderData) => dispatch(actions.purchasePancake(orderData)),
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(ContactData, axios));

@@ -6,10 +6,22 @@ import PancakeBuild from "./components/PancakeBuild/PancakeBuild";
 import Checkout from "./containers/Checkout/Checkout";
 import Orders from "./containers/Orders/Orders";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from "./store/reducer";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
+import orderReducer from "./store/reducers/order";
+import pancakeBuildReducer from "./store/reducers/pancakeBuild.js";
+import thunk from "redux-thunk";
 
-const store = createStore(reducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const rootReducer = combineReducers({
+  pancakeBuild: pancakeBuildReducer,
+  order: orderReducer,
+});
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 class App extends Component {
   render() {
@@ -26,4 +38,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
