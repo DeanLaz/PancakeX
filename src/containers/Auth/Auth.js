@@ -7,7 +7,7 @@ import Button from "../../components/UI/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import classes from "./Auth.module.css";
 import * as actions from "../../store/actions/index";
-import { updateObject, checkValidity } from "../../store/utility";
+import { updateObject, checkValidity } from "../../shared/utility";
 
 class Auth extends Component {
   state = {
