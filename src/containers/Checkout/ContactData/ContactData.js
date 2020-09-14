@@ -93,8 +93,9 @@ class ContactData extends Component {
       ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
+      userId: this.props.userId,
     };
-    this.props.onOrderPancake(order);
+    this.props.onOrderPancake(order, this.props.token);
   };
 
   checkValidity = (value, rules) => {
@@ -181,12 +182,15 @@ const mapStateToProps = (state) => {
     ing: state.pancakeBuild.ingredients,
     price: state.pancakeBuild.totalPrice,
     loading: state.order.loading,
+    token: state.auth.token,
+    userId: state.auth.userId,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onOrderPancake: (orderData) => dispatch(actions.purchasePancake(orderData)),
+    onOrderPancake: (orderData, token) =>
+      dispatch(actions.purchasePancake(orderData, token)),
   };
 };
 export default connect(

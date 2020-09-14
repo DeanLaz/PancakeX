@@ -6,30 +6,59 @@ const initialState = {
   loading: false,
   purchased: false,
 };
+
+const purchaseInit = (state, action) => {
+  return updateObject(state, { purchased: false });
+};
+
+const purchasePancakeStart = (state, action) => {
+  return updateObject(state, { loading: true });
+};
+
+const purchasePancakeSuccess = (state, action) => {
+  const newOrder = updateObject(action.orderData, { id: action.orderId });
+  return updateObject(state, {
+    loading: false,
+    purchased: true,
+    orders: state.orders.concat(newOrder),
+  });
+};
+
+const purchasePancakeFail = (state, action) => {
+  return updateObject(state, { loading: false });
+};
+
+const fetchOrdersStart = (state, action) => {
+  return updateObject(state, { loading: true });
+};
+
+const fetchOrdersSuccess = (state, action) => {
+  return updateObject(state, {
+    orders: action.orders,
+    loading: false,
+  });
+};
+
+const fetchOrdersFail = (state, action) => {
+  return updateObject(state, { loading: false });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.PURCHASED_INIT:
-      return updateObject(state, { purchased: false });
+      return purchaseInit(state, action);
     case actionTypes.PURCHASED_PANCAKE_START:
-      return updateObject(state, { loading: true });
-
+      return purchasePancakeStart(state, action);
     case actionTypes.PURCHASED_PANCAKE_SUCCESS:
-      const newOrder = updateObject(action.orderData, { id: action.orderId });
-      return updateObject(state, {
-        loading: false,
-        purchased: true,
-        orders: state.orders.concat(newOrder),
-      });
-
+      return purchasePancakeSuccess(state, action);
     case actionTypes.PURCHASED_PANCAKE_FAILED:
-      return updateObject(state, { loading: false });
-
+      return purchasePancakeFail(state, action);
     case actionTypes.FETCH_ORDERS_START:
-      return updateObject(state, { loading: true });
+      return fetchOrdersStart(state, action);
     case actionTypes.FETCH_ORDERS_SUCCESS:
-      return updateObject(state, { orders: action.orders, loading: false });
+      return fetchOrdersSuccess(state, action);
     case actionTypes.FETCH_ORDERS_FAIL:
-      return updateObject(state, { loading: false });
+      return fetchOrdersFail(state, action);
     default:
       return state;
   }

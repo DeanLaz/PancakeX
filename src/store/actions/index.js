@@ -4,3 +4,5 @@ export {
   initIngredients,
 } from "./pancakeBuild";
 export { purchasePancake, purchaseInit, fetchOrders } from "./order";
+
+export { auth, logout, setAuthRedirectPath, authCheckState } from "./auth";

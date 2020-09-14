@@ -32,7 +32,12 @@ class PancakeBuild extends Component {
   }
 
   purchaseHander = () => {
-    this.setState({ purchasing: true });
+    if (this.props.isAuthenticated) {
+      this.setState({ purchasing: true });
+    } else {
+      this.props.onSetAuthRedirectPath("/checkout");
+      this.props.history.push("/auth");
+    }
   };
 
   purchaseCancelHandler = () => {
@@ -63,6 +68,7 @@ class PancakeBuild extends Component {
         <Aux>
           <Pancake ingredients={this.props.ings} />
           <BuildControls
+            isAuth={this.props.isAuthenticated}
             ingredientAdded={this.props.onIngAdded}
             ingredientRemoved={this.props.onIngRemoved}
             disabled={disabledInfo}
@@ -97,6 +103,7 @@ class PancakeBuild extends Component {
 }
 const mapStateToProps = (state) => {
   return {
+    isAuthenticated: state.auth.token !== null,
     ings: state.pancakeBuild.ingredients,
     price: state.pancakeBuild.totalPrice,
     error: state.pancakeBuild.error,
@@ -108,6 +115,8 @@ const mapDispatchToProps = (dispatch) => {
     onIngRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
     onInitIngredients: () => dispatch(actions.initIngredients()),
     onInitPurchased: () => dispatch(actions.purchaseInit()),
+    onSetAuthRedirectPath: (path) =>
+      dispatch(actions.setAuthRedirectPath(path)),
   };
 };
 
