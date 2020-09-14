@@ -2,14 +2,24 @@
 
 ## Technologies used:
 
-### Front-End
+### Interface
 
-- React JS
-- Redux: Thunk
+#### React JS -
+
+**Redux**
+
+- Thunk
 - Axios
-- Firebase: Database & Authentication
+- Jest-Enzyme
 
-### Languages
+### Database
+
+**Firebase**
+
+- Authentication
+- Database
+
+#### Languages
 
 - JavaScript
 - HTML
