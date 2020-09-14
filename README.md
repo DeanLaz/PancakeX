@@ -5,9 +5,9 @@
 ### Front-End
 
 - React JS
-- Redux
+- Redux: Thunk
 - Axios
-- Firebase
+- Firebase: Database & Authentication
 
 ### Languages
 
@@ -21,14 +21,14 @@ PancakeX is a WebApp created in React. Allowing users to build Pancakes and add 
 
 ## Todo:
 
-Add Redux
-Change Classes to Hooks
-Add Redux w/ Hooks
-Fix Order Tab Error
-Add Checkout Feature
-Center Pancake on screen
-CSS Styling to OrderSummary/Modal Component
-CSS Styling to Add Buttons
+- [x] Add Redux
+- [ ] Change Classes to Hooks
+- [ ] Add Redux w/ Hooks
+- [ ] Fix Order Route Mounting
+- [ ] Add Checkout Feature
+- [ ] Center Pancake on screen
+- [ ] CSS Styling to OrderSummary/Modal Component
+- [ ] CSS Styling to Add Buttons
 
 ### Made By DeanLazX
 
