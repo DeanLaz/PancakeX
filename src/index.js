@@ -6,11 +6,12 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
-
+import createSagaMiddleware from "redux-saga";
 import orderReducer from "./store/reducers/order";
 import pancakeBuildReducer from "./store/reducers/pancakeBuild.js";
 import authReducer from "./store/reducers/auth";
 import thunk from "redux-thunk";
+import { watchAuth } from "./store/sagas/index";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -23,10 +24,14 @@ const rootReducer = combineReducers({
   auth: authReducer,
 });
 
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk, sagaMiddleware))
 );
+
+sagaMiddleware.run(watchAuth);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -15,7 +15,7 @@ import PancakeBuild from "./components/PancakeBuild/PancakeBuild";
 // import thunk from "redux-thunk";
 // import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
-import { authCheckState } from "./store/actions";
+// import { authCheckState } from "./store/actions";
 import asyncComponent from "./hoc/asyncComponent/asyncComponent";
 
 const asyncCheckout = asyncComponent(() => {
