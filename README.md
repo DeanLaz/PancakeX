@@ -32,13 +32,13 @@ PancakeX is a WebApp created in React. Allowing users to build Pancakes and add 
 ## Todo:
 
 - [x] Add Redux
-- [ ] Change Classes to Hooks
-- [ ] Add Redux w/ Hooks
-- [ ] Fix Order Route Mounting
-- [ ] Add Checkout Feature
-- [ ] Center Pancake on screen
-- [ ] CSS Styling to OrderSummary/Modal Component
-- [ ] CSS Styling to Add Buttons
+- [x] Change Classes to Hooks
+- [x] Add Redux w/ Hooks
+- [x] Fix Order Route Mounting
+- [x] Add Checkout Feature
+- [] Center Pancake on screen
+- [] CSS Styling to OrderSummary/Modal Component
+- [] CSS Styling to Add Buttons
 
 ### Made By DeanLazX
 
