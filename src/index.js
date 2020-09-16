@@ -11,7 +11,7 @@ import orderReducer from "./store/reducers/order";
 import pancakeBuildReducer from "./store/reducers/pancakeBuild.js";
 import authReducer from "./store/reducers/auth";
 import thunk from "redux-thunk";
-import { watchAuth } from "./store/sagas/index";
+import { watchAuth, watchPancakeBuild } from "./store/sagas/index";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -32,6 +32,7 @@ const store = createStore(
 );
 
 sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchPancakeBuild);
 
 ReactDOM.render(
   <React.StrictMode>

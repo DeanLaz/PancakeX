@@ -8,7 +8,7 @@ import {
   authCheckStateSaga,
 } from "./auth";
 import { initIngredientsSaga } from "./pancakeBuild";
-import { purchaseBurgerSaga, fetchOrdersSaga } from "./order";
+import { purchasePancakeSaga, fetchOrdersSaga } from "./order";
 
 export function* watchAuth() {
   yield all([
@@ -23,7 +23,7 @@ export function* watchPancakeBuild() {
   yield takeEvery(actionTypes.INIT_INGREDIENTS, initIngredientsSaga);
 }
 
-// export function* watchOrder() {
-//   yield takeLatest(actionTypes.PURCHASE_PANCAKE, purchaseBurgerSaga);
-//   yield takeEvery(actionTypes.FETCH_ORDERS, fetchOrdersSaga);
-// }
+export function* watchOrder() {
+  yield takeLatest(actionTypes.PURCHASE_PANCAKE, purchasePancakeSaga);
+  yield takeEvery(actionTypes.FETCH_ORDERS, fetchOrdersSaga);
+}

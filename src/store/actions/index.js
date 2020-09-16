@@ -2,8 +2,20 @@ export {
   addIngredient,
   removeIngredient,
   initIngredients,
+  setIngredients,
+  fetchIngredientsFailed,
 } from "./pancakeBuild";
-export { purchasePancake, purchaseInit, fetchOrders } from "./order";
+export {
+  purchasePancake,
+  purchaseInit,
+  fetchOrders,
+  fetchOrdersStart,
+  fetchOrdersFail,
+  fetchOrdersSuccess,
+  purchasePancakeStart,
+  purchasePancakeFailed,
+  purchasePancakeSuccess,
+} from "./order";
 
 export {
   auth,
